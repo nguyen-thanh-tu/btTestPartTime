@@ -1,0 +1,54 @@
+<?php if (empty($block->getMemberId())) : ?>
+    <table style="width:100%">
+    <tr>
+        <th>Customer Name</th>
+        <th>Customer Address</th>
+        <th>Customer Phone</th>
+        <th>Action</th>
+    </tr>
+    <?= $block->getDataTable(); ?>
+</table>
+<?php else :?>
+    <h2>Id: <?= $block->getMemberId(); ?></h2>
+    <div class="form-items">
+        <label for="name">Customer Name:</label>
+        <br>
+        <input type="text" id="name" name="name" value="<?= $block->getName(); ?>">
+        <br>
+        <br>
+        <label for="address">Email:</label>
+        <br>
+        <input type="text" id="address" name="address" value="<?= $block->getAddress(); ?>">
+        <br>
+        <br>
+        <label for="phone">Customer Phone:</label><br>
+        <input type="number" id="phone" name="phone" value="<?= $block->getPhone(); ?>"><br><br>
+        <input type="submit" id="submit-button" value="Submit">
+    </div>
+    <script type="text/javascript">
+        require(["jquery", "mage/url"],function($, urlBuilder) {
+            $(document).ready(function() {
+                $('#submit-button').click(function(){
+                    var url = urlBuilder.build('parttime/ajax/index');
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            member_id: <?= $block->getMemberId(); ?>,
+                            name: $('#name').val(),
+                            address: $('#address').val(),
+                            phone: $('#phone').val(),
+                        },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function (xhr, status, errorThrown) {
+                            console.log('Error happens. Try again.');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+<?php endif; ?>
