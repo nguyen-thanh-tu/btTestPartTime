@@ -3,12 +3,12 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="parttime_listing_data_source" xsi:type="string">Magenest\PartTime\Model\ResourceModel\PartTime\Collection</item>
+                <item name="parttime_listing_data_source" xsi:type="string">Magenest\PartTime\Model\ResourceModel\PartTime\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
 
-    <virtualType name="Magenest\PartTime\Model\ResourceModel\PartTime\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <virtualType name="Magenest\PartTime\Model\ResourceModel\PartTime\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">magenest_part_time</argument>
             <argument name="resourceModel" xsi:type="string">Magenest\PartTime\Model\ResourceModel\PartTime</argument>
